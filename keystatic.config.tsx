@@ -2,46 +2,11 @@ import { config, fields, collection } from '@keystatic/core';
 import React from 'react';
 
 export default config({
-  ui: {
-    brand: {
-      name: 'Myst-Blog',
-      mark: () => {
-        return (
-          <button 
-            onClick={async (e) => {
-              e.preventDefault();
-              const btn = e.currentTarget;
-              const originalText = btn.innerText;
-              btn.innerText = 'Pushing...';
-              try {
-                const res = await fetch('/__push-to-github', { method: 'POST' });
-                if (res.ok) btn.innerText = '✅ Pushed!';
-                else btn.innerText = '❌ Failed';
-              } catch {
-                btn.innerText = '❌ Error';
-              }
-              setTimeout(() => btn.innerText = originalText, 3000);
-            }}
-            style={{
-              background: '#000',
-              color: '#fff',
-              border: '1px solid rgba(255,255,255,0.1)',
-              padding: '6px 12px',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: '600',
-              fontSize: '13px',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
-            }}
-          >
-            Push to GitHub
-          </button>
-        );
-      }
-    }
-  },
   storage: {
-    kind: 'local',
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'myst-25/blog',
   },
   collections: {
     blog: collection({
