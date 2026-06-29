@@ -13,7 +13,7 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({ label: 'Description', multiline: true }),
-        pubDate: fields.date({ label: 'Publish Date', validation: { isRequired: true } }),
+        pubDate: fields.date({ label: 'Publish Date', validation: { isRequired: true }, defaultValue: new Date().toISOString().split('T')[0] }),
         author: fields.text({ label: 'Author', defaultValue: 'Mohammed Yamin Salman' }),
         image: fields.image({
           label: 'Cover Image',
