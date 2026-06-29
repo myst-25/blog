@@ -15,7 +15,7 @@ const gitAutoPush = () => ({
         clearTimeout(timeout);
         timeout = setTimeout(() => {
           console.log(`\n[Auto-Push] Blog update detected! Pushing to GitHub...`);
-          exec('git add src/content/blog/ && git commit -m "Auto-update blog via Keystatic" && git push origin main', (err, stdout, stderr) => {
+          exec('git add -A && git commit -m "Auto-update blog via Keystatic" && git push origin main', (err, stdout, stderr) => {
              if (err && !stdout.includes('nothing to commit')) {
                console.error('[Auto-Push] Failed to push:', stderr);
              } else if (!err) {
